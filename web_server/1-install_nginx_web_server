@@ -1,22 +1,6 @@
 #!/usr/bin/env bash
-# Commands to install Nginx on Web-Server-01
-
-# Updating Packages before making Installations
-sudo apt-get update
-sudo apt-get -y install nginx
-
-# Optional: Install and configure the firewall only if UFW is needed
-if command -v ufw >/dev/null 2>&1; then
-    sudo ufw allow 'Nginx HTTP'
-else
-    echo "UFW not installed. Skipping firewall configuration."
-fi
-
-# Creating an index.html page
-echo "Hoberton School" | sudo tee /var/www/html/index.html
-
-# Testing Nginx configurations for Syntax errors
-sudo nginx -t
-
-# Restarting Nginx
+# installs the reverse proxy - Nginx
+sudo apt update && upgrade
+sudo apt install nginx -y 
+echo "Holberton School" | sudo tee /var/www/html/index.html
 sudo service nginx start
